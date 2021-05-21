@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <link rel="stylesheet" href="./style.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+</head>
+<body>
+
+  <form id="form" class="form">
+    <fieldset>
+      <legend>Select:</legend>
+
+      <button id="button-color">color</button>
+      <button id="button-background-color" class="active-class-for-button">background-color</button>
+
+    </fieldset>
+
+    <div class="wrapper-for-sliders-and-text-block">
+
+      <div class="left-block">
+        <div id="slider1"></div>
+        <input type="text" id="val1" value="">
+      
+        <div id="slider2"></div>
+        <input type="text" id="val2" value="">
+      
+        <div id="slider3"></div>
+        <input type="text" id="val3" value="">
+      </div>
+
+      <div id="right-block" class="right-block">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </div>
+    
+    </div>
+  
+  </form>
+  
+
+
+
+  <script>
+
+    // Форма
+    let form = document.querySelector("#form")
+
+    form.addEventListener("submit", (e)=> {
+      e.preventDefault()
+    })
+
+
+    // Получаем кнопки
+    let buttonColor = form.querySelector("#button-color")
+
+    buttonColor.addEventListener("click", (e)=> {
+
+      let allButtons = form.querySelectorAll("button")
+
+      allButtons.forEach( elem => {
+        elem.classList.remove("active-class-for-button")
+      })
+
+      e.target.classList.add("active-class-for-button")
+    })
+
+
+
+
+    let buttonBackgroundColor = form.querySelector("#button-background-color")
+
+    buttonBackgroundColor.addEventListener("click", (e)=> {
+
+      let allButtons = form.querySelectorAll("button")
+
+      allButtons.forEach( elem => {
+        elem.classList.remove("active-class-for-button")
+      })
+
+      e.target.classList.add("active-class-for-button")
+    })
+
+    
+
+    // Переменные с цветами
+    let red = 0
+
+    let green = 0
+
+    let blue = 0
+
+
+    
+    // Блок с текстом
+    let textBlock = document.querySelector("#right-block")
+
+    let colorOrBackgroundColor
+
+
+
+
+    $(function(){
+      $('#slider1').slider({
+        range: 'min',
+        min: 0,
+        max: 255,
+        value: 0,
+        slide: function(event, ui){
+          $('#val1').val(ui.value);
+
+          red = ui.value
+
+          console.log(red, green, blue)
+
+          setColorOrBackgroundColor()
+        }
+      });
+    });
+
+
+    $(function(){
+      $('#slider2').slider({
+        range: 'min',
+        min: 0,
+        max: 255,
+        value: 0,
+        slide: function(event, ui){
+          $('#val2').val(ui.value);
+
+          green = ui.value
+          console.log(red, green, blue)
+
+          setColorOrBackgroundColor()
+        }
+      });
+    });
+
+    $(function(){
+      $('#slider3').slider({
+        range: 'min',
+        min: 0,
+        max: 255,
+        value: 0,
+        slide: function(event, ui){
+          $('#val3').val(ui.value);
+
+          blue = ui.value
+          console.log(red, green, blue)
+
+          setColorOrBackgroundColor()
+        }
+      });
+    });
+
+
+
+
+    // Функция, которая срабатывает каждый раз, когда мы передвигаем ползунок
+    function setColorOrBackgroundColor() {
+
+      // Проверяем - у какой кнопки есть активный класс
+      let buttons = form.querySelectorAll("button")
+
+      buttons.forEach( button => {
+        if(button.classList.contains('active-class-for-button')) {
+
+          // В зависимости от этого мы решаем - что именно положить в переменную - color или background-color
+          if( button.id === "button-color" ) {
+            colorOrBackgroundColor = "color"
+          }
+
+          else {
+            colorOrBackgroundColor = "backgroundColor"
+          }
+
+        }
+      })
+
+
+      // Устанавливаем цвет у переменной
+      // textBlock.style[colorOrBackgroundColor] = "rgb(`${red}, ${green}, ${blue}`)"
+
+      textBlock.style[colorOrBackgroundColor] = `rgb(${red}, ${green}, ${blue})`
+
+    }
+  
+
+
+    </script>
+
+</body>
+</html>

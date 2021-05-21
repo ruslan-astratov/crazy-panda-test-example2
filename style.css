@@ -1,0 +1,58 @@
+.form {
+  width: 387px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.active-class-for-button {
+  background-color: #4072FE;
+  color: aliceblue;
+}
+
+
+
+#slider1, #slider2, #slider3 {
+  width: 255px;
+  
+}
+
+fieldset {
+  margin-bottom: 10px;
+}
+
+
+#slider1 .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min {
+  background-color: red;
+}
+
+
+#slider2 .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min {
+  background-color: green;
+}
+
+
+
+#slider3 .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min {
+  background-color: blue;
+}
+
+
+.wrapper-for-sliders-and-text-block {
+  width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+}
+
+.left-block {
+  margin-right: 15px;
+}
+
+.right-block {
+  width: 100px;
+  height: 70px;
+  padding: 5px;
+  border: 1px solid black;
+}
